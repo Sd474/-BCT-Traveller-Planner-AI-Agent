@@ -9,29 +9,45 @@
 
 <br>
 
-| | | |
-|:--|:--|:--|
-| 🐍 **Python 3.11+** | 🎈 **Streamlit** | 🐼 **pandas** |
-| 📄 **ReportLab** | 📊 **Kaggle data** | 🗺️ **OpenStreetMap** |
+![Python](https://img.shields.io/badge/Python_3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![ReportLab](https://img.shields.io/badge/ReportLab-B22222?style=for-the-badge)
+
+**🐍 Python 3.11+ · 🎈 Streamlit · 🐼 pandas · 📄 ReportLab**
 
 **`5` dependencies · `11` tools · `0` frameworks · `0` vector databases**
 
 <br>
 
+<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f9e0/512.gif" alt="" width="40" height="40">
+
 ### 🧠 Bring your own brain
+
+![Gemini](https://img.shields.io/badge/Gemini_3.6-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
+![Gemma](https://img.shields.io/badge/Gemma_4-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white)
+![OpenAI](https://img.shields.io/badge/GPT-412991?style=for-the-badge&logo=openai&logoColor=white)
+
+![Nemotron](https://img.shields.io/badge/NVIDIA_Nemotron-76B900?style=flat-square&logo=nvidia&logoColor=white)
+![DeepSeek](https://img.shields.io/badge/DeepSeek_V4-4D6BFE?style=flat-square)
+![Llama](https://img.shields.io/badge/Llama-0866FF?style=flat-square&logo=meta&logoColor=white)
+![Qwen](https://img.shields.io/badge/Qwen_3-615CED?style=flat-square)
+![Mistral](https://img.shields.io/badge/Mistral-FA520F?style=flat-square&logo=mistralai&logoColor=white)
+![OpenRouter](https://img.shields.io/badge/OpenRouter-400+_models-1F2937?style=flat-square)
 
 Every one of these works today, swappable from a dropdown:
 
-| Google AI Studio | OpenRouter |
+| ✦ Google AI Studio — *one key* | ◆ OpenRouter — *one key, 400+ models* |
 |:--|:--|
-| ✦ **Gemini 3.6 Flash** | ◆ **Claude** |
-| ✦ **Gemini 3.5 Flash** | ◆ **GPT** |
-| ✦ **Gemini 3.1 Flash-Lite** | ◆ **DeepSeek V4** |
-| ✦ **Gemma 4** | ◆ **NVIDIA Nemotron 3** |
-| | ◆ **Llama · Qwen · Mistral** |
-| *one key* | *one key · 400+ models* |
+| **Gemini 3.6 Flash** | **Claude** · **GPT** · **DeepSeek V4** |
+| **Gemini 3.5 Flash** | **NVIDIA Nemotron 3** |
+| **Gemini 3.1 Flash-Lite** | **Llama** · **Qwen** · **Mistral** |
+| **Gemma 4** | *…and everything else they carry* |
 
 <br>
+
+<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30d/512.gif" alt="" width="40" height="40">
 
 ### 🌍 Live data — free forever, no keys
 
@@ -388,57 +404,59 @@ These datasets are good. They are not clean. Nobody's are. Here's the honest spl
 Four layers, and each one does exactly one job. Follow a single question through them and the whole system makes sense.
 
 ```
-   YOU ─── "5 days in Jaipur, mid-range, 2 people"
-    │
-    ▼
-┌───────────────────────────────────────────────────────────────┐
-│  🖥️  PRESENTATION            app.py · ui/                      │
-│      Chat · Itinerary · Budget · Export · Dataset manager      │
-│      Owns nothing. Renders what the layers below produce.      │
-└───────────────────────────┬───────────────────────────────────┘
-                            │  neutral message list
-                            ▼
-┌───────────────────────────────────────────────────────────────┐
-│  🧠  ORCHESTRATION           agent/loop.py                      │
-│      for step in 1..6:                                         │
-│          reply = provider.chat(messages, tool_schemas)         │
-│          if not reply.tool_calls:  →  done, return the answer  │
-│          run each tool, append results, go round again         │
-│                                                                │
-│      Knows nothing about Gemini, or CSVs, or the weather.      │
-│      Just: ask, execute, feed back, repeat, stop.              │
-└──────────┬────────────────────────────────────┬───────────────┘
-           │                                    │
-           ▼                                    ▼
-┌────────────────────────────┐   ┌──────────────────────────────┐
-│  🔌  MODEL ACCESS           │   │  🛠️  CAPABILITY               │
-│      providers/            │   │      tools/ · registry.py     │
-│                            │   │                               │
-│  Google SDK ──┐            │   │  11 plain Python functions,   │
-│               ├─► Reply    │   │  each with a JSON schema the  │
-│  requests ────┘            │   │  model reads as documentation │
-│                            │   │                               │
-│  Two wire formats.         │   │  🗄️ INSIDE      🌍 OUTSIDE     │
-│  One neutral object.       │   │  your CSVs      live APIs     │
-│  400+ models behind it.    │   │  ─────────      ─────────     │
-│                            │   │  coverage       weather       │
-│  Gemini · Gemma            │   │  attractions    places        │
-│  Claude · GPT · DeepSeek   │   │  hotels         currency      │
-│  Llama · Qwen · Mistral    │   │  itineraries    email         │
-│  Nemotron · and the rest   │   │  + budget · plan · PDF        │
-└────────────────────────────┘   └───────────────┬───────────────┘
-                                                 │
-                                                 ▼
-                                 ┌───────────────────────────────┐
-                                 │  🗄️  KNOWLEDGE                 │
-                                 │      data_layer/               │
-                                 │                                │
-                                 │  discovery → which file is     │
-                                 │              which dataset?    │
-                                 │  schema    → which column is   │
-                                 │              which field?      │
-                                 │  retrieval → filter, then rank │
-                                 └───────────────────────────────┘
+        YOU ─── "5 days in Jaipur, mid-range, 2 people"
+         │
+         ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│  PRESENTATION                                       app.py  ·  ui/   │
+│                                                                      │
+│  Chat · Itinerary · Budget · Export · Dataset manager                │
+│  Owns nothing. Renders what the layers below produce.                │
+└───────────────────────────────┬──────────────────────────────────────┘
+                                │  neutral message list
+                                ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│  ORCHESTRATION                                     agent/loop.py     │
+│                                                                      │
+│      for step in 1..6:                                               │
+│          reply = provider.chat(messages, tool_schemas)               │
+│          if not reply.tool_calls  ->  done, return the answer        │
+│          run each tool, append results, go round again               │
+│                                                                      │
+│  Knows nothing about Gemini, or CSVs, or the weather.                │
+│  Just: ask, execute, feed back, repeat, stop.                        │
+└─────────────┬──────────────────────────────────┬─────────────────────┘
+              │                                  │
+              ▼                                  ▼
+┌─────────────────────────────┐    ┌───────────────────────────────────┐
+│  MODEL ACCESS               │    │  CAPABILITY                       │
+│  providers/                 │    │  tools/ · agent/registry.py       │
+│                             │    │                                   │
+│  Google SDK ──┐             │    │  11 plain Python functions, each  │
+│               ├──> Reply    │    │  with a JSON schema the model     │
+│  requests ────┘             │    │  reads as documentation           │
+│                             │    │                                   │
+│  Two wire formats.          │    │  INSIDE            OUTSIDE        │
+│  One neutral object.        │    │  your CSVs         live APIs      │
+│  400+ models behind them.   │    │  ----------        ---------      │
+│                             │    │  coverage          weather        │
+│  Gemini · Gemma             │    │  attractions       places         │
+│  Claude · GPT · DeepSeek    │    │  hotels            currency       │
+│  Llama · Qwen · Mistral     │    │  itineraries       email          │
+│  Nemotron · and the rest    │    │  + budget · plan · PDF            │
+└─────────────────────────────┘    └─────────────────┬─────────────────┘
+                                                     │
+                                                     ▼
+                                   ┌───────────────────────────────────┐
+                                   │  KNOWLEDGE                        │
+                                   │  data_layer/                      │
+                                   │                                   │
+                                   │  discovery   which file is which  │
+                                   │              dataset?             │
+                                   │  schema      which column is      │
+                                   │              which field?         │
+                                   │  retrieval   filter, then rank    │
+                                   └───────────────────────────────────┘
 ```
 
 ### 🔁 One question, start to finish
@@ -819,7 +837,9 @@ That's the actual lesson. Not *how do I call an LLM*, but *how do I build someth
 
 <br>
 
-🧱 **Built with stubbornness, five libraries, and an unreasonable number of 404s.**
+<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.gif" alt="" width="44" height="44">
+
+**Built with stubbornness, five libraries, and an unreasonable number of 404s.**
 
 *If it isn't in the data, it doesn't go in the plan.*
 
