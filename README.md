@@ -9,45 +9,43 @@
 
 <br>
 
-![Python](https://img.shields.io/badge/Python_3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
-![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![ReportLab](https://img.shields.io/badge/ReportLab-B22222?style=for-the-badge)
-![Kaggle](https://img.shields.io/badge/Kaggle-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)
+| | | |
+|:--|:--|:--|
+| 🐍 **Python 3.11+** | 🎈 **Streamlit** | 🐼 **pandas** |
+| 📄 **ReportLab** | 📊 **Kaggle data** | 🗺️ **OpenStreetMap** |
 
-![No LangChain](https://img.shields.io/badge/LangChain-not_used-6B7280?style=flat-square)
-![No vector DB](https://img.shields.io/badge/vector_DB-not_needed-6B7280?style=flat-square)
-![5 dependencies](https://img.shields.io/badge/dependencies-5-2A8797?style=flat-square)
-![11 tools](https://img.shields.io/badge/tools-11-2A8797?style=flat-square)
+**`5` dependencies · `11` tools · `0` frameworks · `0` vector databases**
 
 <br>
 
-**Bring your own brain — every one of these works today**
+### 🧠 Bring your own brain
 
-![Gemini](https://img.shields.io/badge/Gemini_3.6_Flash-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
-![Gemma](https://img.shields.io/badge/Gemma_4-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white)
-![OpenAI](https://img.shields.io/badge/GPT-412991?style=for-the-badge&logo=openai&logoColor=white)
+Every one of these works today, swappable from a dropdown:
 
-![Nemotron](https://img.shields.io/badge/NVIDIA_Nemotron-76B900?style=flat-square&logo=nvidia&logoColor=white)
-![DeepSeek](https://img.shields.io/badge/DeepSeek_V4-4D6BFE?style=flat-square)
-![Llama](https://img.shields.io/badge/Llama-0866FF?style=flat-square&logo=meta&logoColor=white)
-![Qwen](https://img.shields.io/badge/Qwen_3-615CED?style=flat-square)
-![Mistral](https://img.shields.io/badge/Mistral-FA520F?style=flat-square&logo=mistralai&logoColor=white)
-![Ollama](https://img.shields.io/badge/Ollama-000000?style=flat-square&logo=ollama&logoColor=white)
-![OpenRouter](https://img.shields.io/badge/OpenRouter-400+_models-1F2937?style=flat-square)
+| Google AI Studio | OpenRouter |
+|:--|:--|
+| ✦ **Gemini 3.6 Flash** | ◆ **Claude** |
+| ✦ **Gemini 3.5 Flash** | ◆ **GPT** |
+| ✦ **Gemini 3.1 Flash-Lite** | ◆ **DeepSeek V4** |
+| ✦ **Gemma 4** | ◆ **NVIDIA Nemotron 3** |
+| | ◆ **Llama · Qwen · Mistral** |
+| *one key* | *one key · 400+ models* |
 
 <br>
 
-**Live data, free forever, no keys**
+### 🌍 Live data — free forever, no keys
 
-![Open-Meteo](https://img.shields.io/badge/Open--Meteo-weather-0EA5E9?style=for-the-badge)
-![Nominatim](https://img.shields.io/badge/Nominatim-places-7EBC6F?style=for-the-badge)
-![Frankfurter](https://img.shields.io/badge/Frankfurter-currency-F59E0B?style=for-the-badge)
+**☀️ Open-Meteo** weather  ·  **📍 Nominatim** places  ·  **💱 Frankfurter** currency
+
+<br>
 
 </div>
 
 ---
+
+> 🖼️ *Section icons are animated. If your browser or network blocks external images
+> — ad blockers and DNS filters often block GitHub's image proxy — they quietly fall
+> back to plain emoji and nothing is lost.*
 
 ## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3ac/512.gif" alt="🎬" width="30" height="30" align="absmiddle"> So what does it actually do?
 
@@ -578,6 +576,7 @@ travel-planner-agent/
 ├── ⚙️ config.py                   Backends, keys, constants, model quirks
 ├── 🧪 smoke_test.py               Test data + tools + models, no UI needed
 ├── ⚠️ GOTCHAS.md                  Why odd-looking code is the way it is
+├── 🧰 scripts/vendor_assets.py    Pull README images local (fixes broken images)
 ├── 📋 requirements.txt            Five lines. That's the flex.
 │
 ├── 🔌 providers/                  "Talk to any model"
@@ -842,6 +841,9 @@ That's the actual lesson. Not *how do I call an LLM*, but *how do I build someth
 
 Attraction and hotel data from Kaggle · Weather by [Open-Meteo](https://open-meteo.com) · Places by [OpenStreetMap Nominatim](https://nominatim.openstreetmap.org) · Rates by [Frankfurter](https://frankfurter.app)
 <br>
+Every live API here is free and needs no key. Please respect Nominatim's rate limits — volunteers run it.
+<br>
+Animated emoji from [Google Noto Animated Emoji](https://googlefonts.github.io/noto-emoji-animation/) — they fall back to plain emoji if images are blocked, so this page reads fine either way.
 
 </sub>
 </div>
