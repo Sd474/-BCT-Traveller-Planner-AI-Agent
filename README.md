@@ -403,61 +403,59 @@ These datasets are good. They are not clean. Nobody's are. Here's the honest spl
 
 Four layers, and each one does exactly one job. Follow a single question through them and the whole system makes sense.
 
+```mermaid
+flowchart TD
+    U(["<b>You</b><br/>“5 days in Jaipur, mid-range, 2 people”"])
+
+    P["<b>PRESENTATION</b> · app.py + ui/<br/><br/>Chat · Itinerary · Budget · Export · Datasets<br/><i>Owns nothing. Renders what the layers below produce.</i>"]
+
+    O["<b>ORCHESTRATION</b> · agent/loop.py<br/><br/>for step in 1..6<br/>ask the model → run the tools it asked for → feed results back<br/><i>Knows nothing about Gemini, or CSVs, or the weather.</i>"]
+
+    M["<b>MODEL ACCESS</b> · providers/<br/><br/>Google SDK + requests → one neutral Reply<br/><br/>Gemini · Gemma · Claude · GPT<br/>DeepSeek · Llama · Qwen · Mistral · Nemotron"]
+
+    C["<b>CAPABILITY</b> · tools/ + registry.py<br/><br/>11 plain Python functions,<br/>each with a JSON schema the model reads"]
+
+    I["<b>INSIDE</b> · your CSVs<br/><br/>coverage · attractions<br/>hotels · itineraries"]
+
+    X["<b>OUTSIDE</b> · live APIs<br/><br/>weather · places<br/>currency · email"]
+
+    K["<b>KNOWLEDGE</b> · data_layer/<br/><br/>discovery → which file is which dataset?<br/>schema → which column is which field?<br/>retrieval → hard filter, then IDF rank"]
+
+    U --> P
+    P -->|neutral message list| O
+    O -->|which model?| M
+    O -->|which tool?| C
+    M -.->|Reply| O
+    C --> I
+    C --> X
+    I -->|which rows?| K
+
+    classDef ui       fill:#123039,stroke:#38B0C4,stroke-width:2px,color:#E7EEF0
+    classDef core     fill:#1B2E24,stroke:#6FCF97,stroke-width:2px,color:#E7EEF0
+    classDef model    fill:#2B2340,stroke:#A78BFA,stroke-width:2px,color:#E7EEF0
+    classDef tool     fill:#3A2E1C,stroke:#E0A662,stroke-width:2px,color:#E7EEF0
+    classDef data     fill:#172227,stroke:#93A6AC,stroke-width:2px,color:#E7EEF0
+    classDef user     fill:#0E1518,stroke:#38B0C4,stroke-width:2px,color:#E7EEF0
+
+    class U user
+    class P ui
+    class O core
+    class M model
+    class C,I,X tool
+    class K data
 ```
-        YOU ─── "5 days in Jaipur, mid-range, 2 people"
-         │
-         ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│  PRESENTATION                                        app.py  ·  ui/  │
-│                                                                      │
-│  Chat · Itinerary · Budget · Export · Dataset manager                │
-│  Owns nothing. Renders what the layers below produce.                │
-└────────────────────────────────┬─────────────────────────────────────┘
-                                 │  neutral message list
-                                 ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│  ORCHESTRATION                                        agent/loop.py  │
-│                                                                      │
-│      for step in 1..6:                                               │
-│          reply = provider.chat(messages, tool_schemas)               │
-│          if no tool calls  ->  done, return the answer               │
-│          run each tool, append results, go round again               │
-│                                                                      │
-│  Knows nothing about Gemini, or CSVs, or the weather.                │
-│  Just: ask, execute, feed back, repeat, stop.                        │
-└──────────────┬────────────────────────────────────┬──────────────────┘
-               │                                    │
-         which model?                          which tool?
-               │                                    │
-               ▼                                    ▼
-┌────────────────────────────┐    ┌────────────────────────────────────┐
-│  MODEL ACCESS  providers/  │    │  CAPABILITY  tools/ · registry.py  │
-│                            │    │                                    │
-│  Google SDK ──┐            │    │  11 plain Python functions, each   │
-│               ├──>  Reply  │    │  with a JSON schema the model      │
-│  requests ────┘            │    │  reads as documentation            │
-│                            │    │                                    │
-│  Two wire formats.         │    │  INSIDE            OUTSIDE         │
-│  One neutral object.       │    │  your CSVs         live APIs       │
-│  400+ models behind them.  │    │  ---------         ---------       │
-│                            │    │  coverage          weather         │
-│  Gemini · Gemma            │    │  attractions       places          │
-│  Claude · GPT · DeepSeek   │    │  hotels            currency        │
-│  Llama · Qwen · Mistral    │    │  itineraries       email           │
-│  Nemotron · and the rest   │    │  + budget · plan · PDF             │
-└────────────────────────────┘    └─────────────────┬──────────────────┘
-                                                    │
-                                               which rows?
-                                                    │
-                                                    ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│  KNOWLEDGE                                              data_layer/  │
-│                                                                      │
-│  discovery    which file is which dataset?                           │
-│  schema       which column is which field?                           │
-│  retrieval    hard filter  ->  IDF rank  ->  serialise               │
-└──────────────────────────────────────────────────────────────────────┘
-```
+
+**In one sentence per layer:**
+
+| Layer | Job | Knows about |
+|:--|:--|:--|
+| **Presentation** | Draw things | Nothing. Pure rendering |
+| **Orchestration** | Decide, dispatch, repeat | Neither models nor data — only messages and tool schemas |
+| **Model access** | Turn any vendor into one `Reply` | Two wire formats, hundreds of models |
+| **Capability** | Actually do the work | Your CSVs and four live APIs |
+| **Knowledge** | Find the right rows | Filenames, columns, and how to rank text |
+
+The point of the separation: **the loop never learns which model it's talking to, and the model never learns where the data lives.** Swap either one and nothing else changes — which is why adding a whole new vendor mid-project cost one dictionary entry.
 
 ### 🔁 One question, start to finish
 
