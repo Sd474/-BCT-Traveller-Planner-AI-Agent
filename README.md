@@ -408,55 +408,55 @@ Four layers, and each one does exactly one job. Follow a single question through
          │
          ▼
 ┌──────────────────────────────────────────────────────────────────────┐
-│  PRESENTATION                                       app.py  ·  ui/   │
+│  PRESENTATION                                        app.py  ·  ui/  │
 │                                                                      │
 │  Chat · Itinerary · Budget · Export · Dataset manager                │
 │  Owns nothing. Renders what the layers below produce.                │
-└───────────────────────────────┬──────────────────────────────────────┘
-                                │  neutral message list
-                                ▼
+└────────────────────────────────┬─────────────────────────────────────┘
+                                 │  neutral message list
+                                 ▼
 ┌──────────────────────────────────────────────────────────────────────┐
-│  ORCHESTRATION                                     agent/loop.py     │
+│  ORCHESTRATION                                        agent/loop.py  │
 │                                                                      │
 │      for step in 1..6:                                               │
 │          reply = provider.chat(messages, tool_schemas)               │
-│          if not reply.tool_calls  ->  done, return the answer        │
+│          if no tool calls  ->  done, return the answer               │
 │          run each tool, append results, go round again               │
 │                                                                      │
 │  Knows nothing about Gemini, or CSVs, or the weather.                │
 │  Just: ask, execute, feed back, repeat, stop.                        │
-└─────────────┬──────────────────────────────────┬─────────────────────┘
-              │                                  │
-              ▼                                  ▼
-┌─────────────────────────────┐    ┌───────────────────────────────────┐
-│  MODEL ACCESS               │    │  CAPABILITY                       │
-│  providers/                 │    │  tools/ · agent/registry.py       │
-│                             │    │                                   │
-│  Google SDK ──┐             │    │  11 plain Python functions, each  │
-│               ├──> Reply    │    │  with a JSON schema the model     │
-│  requests ────┘             │    │  reads as documentation           │
-│                             │    │                                   │
-│  Two wire formats.          │    │  INSIDE            OUTSIDE        │
-│  One neutral object.        │    │  your CSVs         live APIs      │
-│  400+ models behind them.   │    │  ----------        ---------      │
-│                             │    │  coverage          weather        │
-│  Gemini · Gemma             │    │  attractions       places         │
-│  Claude · GPT · DeepSeek    │    │  hotels            currency       │
-│  Llama · Qwen · Mistral     │    │  itineraries       email          │
-│  Nemotron · and the rest    │    │  + budget · plan · PDF            │
-└─────────────────────────────┘    └─────────────────┬─────────────────┘
-                                                     │
-                                                     ▼
-                                   ┌───────────────────────────────────┐
-                                   │  KNOWLEDGE                        │
-                                   │  data_layer/                      │
-                                   │                                   │
-                                   │  discovery   which file is which  │
-                                   │              dataset?             │
-                                   │  schema      which column is      │
-                                   │              which field?         │
-                                   │  retrieval   filter, then rank    │
-                                   └───────────────────────────────────┘
+└──────────────┬────────────────────────────────────┬──────────────────┘
+               │                                    │
+         which model?                          which tool?
+               │                                    │
+               ▼                                    ▼
+┌────────────────────────────┐    ┌────────────────────────────────────┐
+│  MODEL ACCESS  providers/  │    │  CAPABILITY  tools/ · registry.py  │
+│                            │    │                                    │
+│  Google SDK ──┐            │    │  11 plain Python functions, each   │
+│               ├──>  Reply  │    │  with a JSON schema the model      │
+│  requests ────┘            │    │  reads as documentation            │
+│                            │    │                                    │
+│  Two wire formats.         │    │  INSIDE            OUTSIDE         │
+│  One neutral object.       │    │  your CSVs         live APIs       │
+│  400+ models behind them.  │    │  ---------         ---------       │
+│                            │    │  coverage          weather         │
+│  Gemini · Gemma            │    │  attractions       places          │
+│  Claude · GPT · DeepSeek   │    │  hotels            currency        │
+│  Llama · Qwen · Mistral    │    │  itineraries       email           │
+│  Nemotron · and the rest   │    │  + budget · plan · PDF             │
+└────────────────────────────┘    └─────────────────┬──────────────────┘
+                                                    │
+                                               which rows?
+                                                    │
+                                                    ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│  KNOWLEDGE                                              data_layer/  │
+│                                                                      │
+│  discovery    which file is which dataset?                           │
+│  schema       which column is which field?                           │
+│  retrieval    hard filter  ->  IDF rank  ->  serialise               │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
 ### 🔁 One question, start to finish
