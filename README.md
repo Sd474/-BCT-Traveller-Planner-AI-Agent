@@ -9,6 +9,12 @@
 
 <br>
 
+**Soumik Dey · Vinit Saw · Sraoshree Yadav · Sayan Sikder · Swapnil Basu**
+
+<sub>BCT Agentic AI programme</sub>
+
+<br>
+
 ![Python](https://img.shields.io/badge/Python_3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
@@ -821,22 +827,6 @@ The eleven tools here are already the right shape for it. That's not a coinciden
 
 ---
 
-## 👥 The team
-
-Built by five of us as part of the **BCT Agentic AI** programme.
-
-<div align="center">
-
-| | |
-|:--|:--|
-| **Soumik Dey** | **Vinit Saw** |
-| **Sraoshree Yadav** | **Sayan Sikder** |
-| **Swapnil Basu** | |
-
-</div>
-
----
-
 ## 🎯 One last thought
 
 The most valuable thing here isn't the itinerary generator.
@@ -873,6 +863,9 @@ That's the actual lesson. Not *how do I call an LLM*, but *how do I build someth
 
 Attraction and hotel data from Kaggle · Weather by [Open-Meteo](https://open-meteo.com) · Places by [OpenStreetMap Nominatim](https://nominatim.openstreetmap.org) · Rates by [Frankfurter](https://frankfurter.app)
 <br>
+Every live API here is free and needs no key. Please respect Nominatim's rate limits — volunteers run it.
+<br>
+This README uses no remote images — every icon is a Unicode character, so it renders identically everywhere, offline, and behind any filter.
 
 </sub>
 </div>
