@@ -844,7 +844,6 @@ Attraction and hotel data from Kaggle · Weather by [Open-Meteo](https://open-me
 <br>
 Every live API here is free and needs no key. Please respect Nominatim's rate limits — volunteers run it.
 <br>
-Animated emoji from [Google Noto Animated Emoji](https://googlefonts.github.io/noto-emoji-animation/) · Brand marks from [Simple Icons](https://simpleicons.org)
 
 </sub>
 </div>
